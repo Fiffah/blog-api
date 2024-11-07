@@ -14,5 +14,5 @@ API for blog SPA with laravel
 1. Clone This Repository:
 
    
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/Fiffah/blog-api.git
 
