@@ -1,4 +1,4 @@
-# Nama Proyek
+# Blogging API
 
 API for blog SPA with laravel
 
@@ -15,3 +15,4 @@ API for blog SPA with laravel
 
    
    git clone https://github.com/username/repository-name.git
+
