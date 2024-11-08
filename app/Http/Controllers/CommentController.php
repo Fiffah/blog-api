@@ -15,14 +15,19 @@ class CommentController extends Controller
             ->get();
     }
 
-
     public function store(Request $request, $postId)
     {
+        $user = $request->user();
+
+        if ($user->role !== 'admin') {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $request->validate(['content' => 'required']);
 
         $comment = Comment::create([
             'post_id' => $postId,
-            'user_id' => $request->user()->id,
+            'user_id' => $user->id,
             'content' => $request->content,
         ]);
 
@@ -32,6 +37,12 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
+
+        $user = auth()->user();
+        if ($user->role !== 'admin') {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $comment->delete();
         return response()->json(null, 204);
     }
