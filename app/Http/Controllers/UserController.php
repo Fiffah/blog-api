@@ -22,7 +22,9 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['token' => $user->createToken('API Token')->plainTextToken]);
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        return response()->json(['token' => $token], 201);
     }
 
     public function login(Request $request)
@@ -38,6 +40,8 @@ class UserController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['token' => $user->createToken('API Token')->plainTextToken]);
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        return response()->json(['token' => $token], 200);
     }
 }
